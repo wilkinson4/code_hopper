@@ -6,6 +6,9 @@ public class Fly : MonoBehaviour
 {
     public float speed = 1.5f;
     public float rotateSpeed = 5.0f;
+    public float rangex = 10f;
+    public float rangey = 4.5f;
+
 
     Vector3 newPosition;
 
@@ -16,7 +19,7 @@ public class Fly : MonoBehaviour
 
     void PositionChange()
     {
-        newPosition = new Vector2(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f));
+        newPosition = new Vector2(Random.Range(-rangex, rangex), Random.Range(-rangey, rangey));
     }
 
     void Update()
