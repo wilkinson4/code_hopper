@@ -8,6 +8,9 @@ public class Fly : MonoBehaviour
     public float rotateSpeed = 5.0f;
     public float rangex = 10f;
     public float rangey = 4.5f;
+    private bool notDead = true;
+    private bool locked = false;
+    public Sprite deadimage;
 
 
     Vector3 newPosition;
@@ -24,12 +27,20 @@ public class Fly : MonoBehaviour
 
     void Update()
     {
-        if (Vector2.Distance(transform.position, newPosition) < 1)
-            PositionChange();
+        if (notDead)
+        {
+            if (Vector2.Distance(transform.position, newPosition) < 1)
+                PositionChange();
 
-        transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * speed);
+            transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * speed);
 
-        LookAt2D(newPosition);
+            LookAt2D(newPosition);
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * .1f);
+            SpinToEnd2D(newPosition);
+        }
     }
 
     void LookAt2D(Vector3 lookAtPosition)
@@ -41,4 +52,25 @@ public class Fly : MonoBehaviour
         Quaternion endRotation = Quaternion.AngleAxis(angle, Vector3.back);
         transform.rotation = Quaternion.Slerp(transform.rotation, endRotation, Time.deltaTime * rotateSpeed);
     }
+    void SpinToEnd2D(Vector3 lookAtPosition)
+    {
+
+        transform.Rotate(Vector3.forward * -5);
+    }
+    private void OnMouseDown()
+    {
+        if (!locked)
+        {
+            Init.currentflycount--;
+            locked = true;
+            Debug.Log("Splat");
+            this.GetComponent<SpriteRenderer>().sprite = deadimage;
+            notDead = false;
+            newPosition = new Vector2(transform.position.x, -30f);
+        }
+    }
 }
+
+
+
+
