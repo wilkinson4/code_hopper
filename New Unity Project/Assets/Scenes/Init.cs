@@ -24,6 +24,7 @@ public class Init : MonoBehaviour
     public static int currentPeedcount = 0;
     public static int currentSpidercount = 0;
     public static int currentBeecount = 0;
+    private int iFly, iTick, iBee, iSpider, iPeed;
 
     // Start is called before the first frame update
     void Start()
@@ -33,11 +34,12 @@ public class Init : MonoBehaviour
 
     private IEnumerator SpawnFly()
     {
-        for (int i = 0; i < numFlies; i++) { 
+        int i = 0;
+        for (iFly = 0; iFly < numFlies; i++){ 
             SpawnPrefebFly();
             yield return new WaitForSeconds(3f);
         }
-        for (int i = 0; i < numTicks; i++)
+        for (iTick = 0; iTick < numTicks; iTick++)
         {
             SpawnPrefebTick();
             yield return new WaitForSeconds(3f);
@@ -53,8 +55,7 @@ public class Init : MonoBehaviour
         float verticalInput = transform.position.y;
 
         //update the position
-        if (currentflycount < 1) { Debug.Log("Spawn NOW"); 
-            SpawnPrefebFly(); }
+        if (currentflycount < 1 && iFly < numFlies) { SpawnPrefebFly(); }
         if (swap)
         {
             if (transform.position.x > MaxX)
@@ -78,37 +79,50 @@ public class Init : MonoBehaviour
 
 
         //output to log the position change
-        Debug.Log(currentflycount);
+        Debug.Log(iFly);
     }
     void SpawnPrefebFly()
     {
-        currentflycount++;
-        numFlies--;
-        Instantiate(Fly, transform.position, Quaternion.identity); ;
+        
+        if (iFly < numFlies) { 
+            currentflycount++; 
+            iFly++;
+            Instantiate(Fly, transform.position, Quaternion.identity); }
     }
     void SpawnPrefebTick()
     {
-        currentTickcount++;
-        numTicks--;
-        Instantiate(Tick, transform.position, Quaternion.identity); ;
+
+
+        if (iTick < numTicks) { 
+            currentTickcount++; 
+            iTick++; 
+            Instantiate(Tick, transform.position, Quaternion.identity); }
     }
     void SpawnPrefebPeeds()
     {
-        currentPeedcount++;
-        numPeeds--;
-        Instantiate(Peed, transform.position, Quaternion.identity); ;
+
+        if (iPeed < numPeeds) { 
+            currentPeedcount++; 
+            iPeed++;
+            Instantiate(Peed, transform.position, Quaternion.identity); }
     }
     void SpawnPrefebSpider()
     {
-        currentSpidercount++;
-        numSpiders--;
-        Instantiate(Spider, transform.position, Quaternion.identity); ;
+        if (iSpider < numSpiders) { 
+            currentSpidercount++;
+            iSpider++;
+            Instantiate(Spider, transform.position, Quaternion.identity);
+        }
     }
     void SpawnPrefebBees()
     {
-        currentBeecount++;
-        numBees--;
-        Instantiate(Bee, transform.position, Quaternion.identity); ;
+        if (iBee < numBees)
+        {
+            currentBeecount++;
+            iBee++;
+            Instantiate(Bee, transform.position, Quaternion.identity);
+        }
+
     }
 
 }
