@@ -12,6 +12,7 @@ public class Spider : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool SpiderOn = false;
+    public string name = "Spider";
 
 
     Vector3 newPosition;

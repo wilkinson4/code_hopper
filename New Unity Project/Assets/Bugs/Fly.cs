@@ -15,6 +15,7 @@ public class Fly : MonoBehaviour
     Vector3 newPosition;
     public AudioClip Splat;
     AudioSource audioSource;
+    public string name = "Fly";
 
     void Start()
     {

@@ -12,6 +12,7 @@ public class Peed : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool PeedOn = false;
+    public string name = "Peed";
 
 
     Vector3 newPosition;

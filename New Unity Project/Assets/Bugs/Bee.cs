@@ -12,6 +12,7 @@ public class Bee : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool BeeOn = false;
+    public string name = "Bee";
 
 
     Vector3 newPosition;

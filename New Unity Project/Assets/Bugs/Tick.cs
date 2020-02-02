@@ -12,6 +12,7 @@ public class Tick : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool TickOn = false;
+    public string name = "Tick";
 
 
     Vector3 newPosition;

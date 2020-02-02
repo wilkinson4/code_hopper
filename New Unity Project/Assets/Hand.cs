@@ -2,6 +2,7 @@
 // 3D position.  Display these on the game window.
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Hand : MonoBehaviour
 {
@@ -10,10 +11,16 @@ public class Hand : MonoBehaviour
     public Sprite liveimage;
     public static bool _inputLocked;
     public float inputlockingTime = 0.5f;
+    private int count;
+    public Text scoreText;
+    public XSpawn xspawn;
 
     void Start()
     {
+        xspawn = new XSpawn();
         cam = Camera.main;
+        count = xspawn.numFlies + xspawn.numBees + xspawn.numPeeds + xspawn.numTicks + xspawn.numSpiders;
+        scoreText.text = $"Bugs Left: {count.ToString()}";
     }
     void OnGUI()
     {
@@ -31,7 +38,7 @@ public class Hand : MonoBehaviour
         transform.position = point;
     }
 
-    
+
     void UnlockInput()
     {
         _inputLocked = false;
@@ -56,9 +63,20 @@ public class Hand : MonoBehaviour
             }
             else
             {
-                Debug.Log("Hello!");
                 LockInput();
                 this.GetComponent<SpriteRenderer>().sprite = deadimage;
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+                if (hit.collider != null)
+                {
+                    Debug.Log(hit.collider.gameObject.name);
+                    if (hit.collider.gameObject.CompareTag("bug"))
+                    {
+                        count--;
+                        scoreText.text = $"Bugs Left: {count.ToString()}";
+                    }
+                }
             }
         }
     }
