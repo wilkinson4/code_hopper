@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinalBossMoth: MonoBehaviour
 {
@@ -90,6 +91,7 @@ public class FinalBossMoth: MonoBehaviour
                 newPosition = new Vector2(transform.position.x, -30f);
                 AudioSource.PlayClipAtPoint(Splat2, this.transform.position);
                 Instantiate(part2, this.transform.position, this.transform.rotation);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
 
         }
