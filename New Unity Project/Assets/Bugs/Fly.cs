@@ -16,7 +16,7 @@ public class Fly : MonoBehaviour
     Vector3 newPosition;
     public AudioClip Splat;
     AudioSource audioSource;
-<<<<<<< HEAD
+
     public ParticleSystem part;
 
 
@@ -25,9 +25,8 @@ public class Fly : MonoBehaviour
     public bool includeChildren = true;
 
 
-=======
+
     public string name = "Fly";
->>>>>>> master
 
     void Start()
     {

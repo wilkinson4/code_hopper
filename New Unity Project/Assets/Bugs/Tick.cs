@@ -12,11 +12,11 @@ public class Tick : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool TickOn = false;
-<<<<<<< HEAD
+
     public ParticleSystem part;
-=======
+
     public string name = "Tick";
->>>>>>> master
+
 
 
     Vector3 newPosition;
