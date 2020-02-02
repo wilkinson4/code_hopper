@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(AudioSource))]
 public class Fly : MonoBehaviour
 {
     public float speed = 1.5f;
@@ -12,12 +12,13 @@ public class Fly : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool FlyOn = true;
-
-
     Vector3 newPosition;
+    public AudioClip Splat;
+    AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         PositionChange();
     }
 
@@ -60,13 +61,14 @@ public class Fly : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (!locked)
+        if (!locked && !Hand._inputLocked)
         {
             XSpawn.currentflycount--;
             locked = true;
             this.GetComponent<SpriteRenderer>().sprite = deadimage;
             notDead = false;
             newPosition = new Vector2(transform.position.x, -30f);
+            AudioSource.PlayClipAtPoint(Splat, this.transform.position);
         }
     }
 }
