@@ -5,11 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class LoadSceneOnClick : MonoBehaviour
 {
-	//public bool isStart;
 
     public void OnMouseUp()
 	{
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 		
 	}
+    public void quitGame()
+    {
+        Application.Quit();
+    }
 }
