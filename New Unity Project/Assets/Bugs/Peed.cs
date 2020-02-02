@@ -12,7 +12,11 @@ public class Peed : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool PeedOn = false;
+<<<<<<< HEAD
     public ParticleSystem part;
+=======
+    public string name = "Peed";
+>>>>>>> master
 
 
     Vector3 newPosition;

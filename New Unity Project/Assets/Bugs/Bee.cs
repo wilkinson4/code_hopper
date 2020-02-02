@@ -12,7 +12,11 @@ public class Bee : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool BeeOn = false;
+<<<<<<< HEAD
     public ParticleSystem part;
+=======
+    public string name = "Bee";
+>>>>>>> master
 
 
     Vector3 newPosition;

@@ -12,7 +12,11 @@ public class Spider : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool SpiderOn = false;
+<<<<<<< HEAD
     public ParticleSystem part;
+=======
+    public string name = "Spider";
+>>>>>>> master
 
 
     Vector3 newPosition;

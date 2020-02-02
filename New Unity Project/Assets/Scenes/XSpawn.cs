@@ -10,6 +10,7 @@ public class XSpawn : MonoBehaviour
     public GameObject Spiders;
     public GameObject Bees;
     public GameObject Peeds;
+<<<<<<< HEAD
     public GameObject MothBoss;
 
     public int numFlies = 20;
@@ -24,6 +25,13 @@ public class XSpawn : MonoBehaviour
     public static int killPeeds = 0;
     public static int killBees = 0;
 
+=======
+    public int numFlies = 10;
+    public int numTicks = 10;
+    public int numSpiders = 10;
+    public int numPeeds = 10;
+    public int numBees = 10;
+>>>>>>> master
     private float moveSpeedX = 1f;
     private float moveSpeedY = 0.5f;
     private Vector2 defaultXSpawn = new Vector2(0f, 5f);
