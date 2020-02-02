@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fly : MonoBehaviour
+public class Peed : MonoBehaviour
 {
     public float speed = 1.5f;
     public float rotateSpeed = 5.0f;
     public float rangex = 10f;
-    public float rangey = 4.5f;
+    public float rangey = 4.0f;
     private bool notDead = true;
     private bool locked = false;
     public Sprite deadimage;
-    public static bool FlyOn = true;
+    public static bool PeedOn = false;
 
 
     Vector3 newPosition;
@@ -23,7 +23,7 @@ public class Fly : MonoBehaviour
 
     void PositionChange()
     {
-        newPosition = new Vector2(Random.Range(-rangex, rangex), Random.Range(-rangey, rangey));
+        newPosition = new Vector2(Random.Range(-rangex, rangex), transform.position.y);
     }
 
     void Update()
@@ -32,7 +32,6 @@ public class Fly : MonoBehaviour
         {
             if (Vector2.Distance(transform.position, newPosition) < 1)
                 PositionChange();
-
             transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * speed);
 
             LookAt2D(newPosition);
@@ -48,7 +47,7 @@ public class Fly : MonoBehaviour
     {
         float distanceX = lookAtPosition.x - transform.position.x;
         float distanceY = lookAtPosition.y - transform.position.y;
-        float angle = Mathf.Atan2(distanceX, distanceY) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(distanceX, distanceY) * Mathf.Rad2Deg + 45;
 
         Quaternion endRotation = Quaternion.AngleAxis(angle, Vector3.back);
         transform.rotation = Quaternion.Slerp(transform.rotation, endRotation, Time.deltaTime * rotateSpeed);
@@ -56,13 +55,13 @@ public class Fly : MonoBehaviour
     void SpinToEnd2D(Vector3 lookAtPosition)
     {
 
-        transform.Rotate(Vector3.forward * -5);
+        transform.Rotate(Vector3.forward * -10);
     }
     private void OnMouseDown()
     {
         if (!locked)
         {
-            XSpawn.currentflycount--;
+            XSpawn.currentPeedcount--;
             locked = true;
             this.GetComponent<SpriteRenderer>().sprite = deadimage;
             notDead = false;
