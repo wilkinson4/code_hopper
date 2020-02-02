@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(AudioSource))]
-public class Fly : MonoBehaviour
+
+public class Spider : MonoBehaviour
 {
     public float speed = 1.5f;
     public float rotateSpeed = 5.0f;
@@ -11,7 +11,9 @@ public class Fly : MonoBehaviour
     private bool notDead = true;
     private bool locked = false;
     public Sprite deadimage;
-    public static bool FlyOn = true;
+    public static bool SpiderOn = false;
+
+
     Vector3 newPosition;
     public AudioClip Splat;
     AudioSource audioSource;
@@ -57,13 +59,13 @@ public class Fly : MonoBehaviour
     void SpinToEnd2D(Vector3 lookAtPosition)
     {
 
-        transform.Rotate(Vector3.forward * -5);
+        transform.Rotate(Vector3.forward * -10);
     }
     private void OnMouseDown()
     {
         if (!locked && !Hand._inputLocked)
         {
-            XSpawn.currentflycount--;
+            XSpawn.currentSpidercount--;
             locked = true;
             this.GetComponent<SpriteRenderer>().sprite = deadimage;
             notDead = false;
