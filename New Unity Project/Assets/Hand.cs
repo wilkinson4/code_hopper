@@ -9,7 +9,7 @@ public class Hand : MonoBehaviour
     public Sprite deadimage;
     public Sprite liveimage;
     public static bool _inputLocked;
-    public float inputlockingTime = 0.5f;
+    public float inputlockingTime = 0.2f;
 
     void Start()
     {
@@ -52,11 +52,11 @@ public class Hand : MonoBehaviour
         {
             if (isInputLocked())
             {
-                Debug.LogWarning("Input locked");
+   //             Debug.LogWarning("Input locked");
             }
             else
             {
-                Debug.Log("Hello!");
+  //              Debug.Log("Hello!");
                 LockInput();
                 this.GetComponent<SpriteRenderer>().sprite = deadimage;
             }

@@ -65,6 +65,7 @@ public class Spider : MonoBehaviour
     {
         if (!locked && !Hand._inputLocked)
         {
+            XSpawn.killSpiders++;
             XSpawn.currentSpidercount--;
             locked = true;
             this.GetComponent<SpriteRenderer>().sprite = deadimage;

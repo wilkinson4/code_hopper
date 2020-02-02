@@ -64,6 +64,7 @@ public class Peed : MonoBehaviour
     {
         if (!locked && !Hand._inputLocked)
         {
+            XSpawn.killPeeds++;
             XSpawn.currentPeedcount--;
             locked = true;
             this.GetComponent<SpriteRenderer>().sprite = deadimage;

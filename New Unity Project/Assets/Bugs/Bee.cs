@@ -65,6 +65,7 @@ public class Bee : MonoBehaviour
     {
         if (!locked && !Hand._inputLocked)
         {
+            XSpawn.killBees++;
             XSpawn.currentBeecount--;
             locked = true;
             this.GetComponent<SpriteRenderer>().sprite = deadimage;

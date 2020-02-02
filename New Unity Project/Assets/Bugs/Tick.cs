@@ -65,6 +65,7 @@ public class Tick : MonoBehaviour
     {
         if (!locked && !Hand._inputLocked)
         {
+            XSpawn.killTicks++;
             XSpawn.currentTickcount--;
             locked = true;
             this.GetComponent<SpriteRenderer>().sprite = deadimage;
