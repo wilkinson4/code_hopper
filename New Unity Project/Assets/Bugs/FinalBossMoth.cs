@@ -8,12 +8,18 @@ public class FinalBossMoth: MonoBehaviour
     public float rotateSpeed = 5.0f;
     public float rangex = 10f;
     public float rangey = 4.5f;
+    public float timeheal = 0f;
+    public float increase = 0f;
     private bool notDead = true;
     private bool locked = false;
+    public int numhits = 20;
     public Sprite deadimage;
-    public static bool FlyOn = true;
-
-
+    public static bool TickOn = false;
+    public ParticleSystem part;
+    public AudioClip Splat;
+    public ParticleSystem part2;
+    public AudioClip Splat2;
+    AudioSource audioSource;
     Vector3 newPosition;
 
     void Start()
@@ -42,6 +48,13 @@ public class FinalBossMoth: MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * .1f);
             SpinToEnd2D(newPosition);
         }
+        timeheal += increase;
+        increase = Random.Range(0f, .01f);
+        if (timeheal >= 1f)
+        {
+            numhits++;
+            timeheal = 0f;
+        }
     }
 
     void LookAt2D(Vector3 lookAtPosition)
@@ -60,17 +73,25 @@ public class FinalBossMoth: MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (!locked)
+        if (!locked && !Hand._inputLocked)
         {
-            XSpawn.currentflycount--;
-            locked = true;
-            this.GetComponent<SpriteRenderer>().sprite = deadimage;
-            notDead = false;
-            newPosition = new Vector2(transform.position.x, -30f);
+            if (numhits > 0)
+            {
+
+                numhits--;
+                AudioSource.PlayClipAtPoint(Splat, this.transform.position);
+                Instantiate(part, this.transform.position, this.transform.rotation);
+            }
+            else
+            {
+                locked = true;
+                this.GetComponent<SpriteRenderer>().sprite = deadimage;
+                notDead = false;
+                newPosition = new Vector2(transform.position.x, -30f);
+                AudioSource.PlayClipAtPoint(Splat2, this.transform.position);
+                Instantiate(part2, this.transform.position, this.transform.rotation);
+            }
+
         }
     }
 }
-
-
-
-

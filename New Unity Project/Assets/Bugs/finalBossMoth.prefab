@@ -119,8 +119,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd696f26185b84b2082903e5fa9c7de9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 3.5
   rotateSpeed: 5
   rangex: 10
   rangey: 4.5
+  timeheal: 0
+  increase: 0
+  numhits: 20
   deadimage: {fileID: 21300000, guid: 6991908d7f4ad471a92bfa591f4c763f, type: 3}
+  part: {fileID: 5294074423891831054, guid: a0abf9b26c83f6642b7e5e3f697941e3, type: 3}
+  Splat: {fileID: 8300000, guid: fdaae455f3ce1654f8234ac8ece2c04e, type: 3}
+  part2: {fileID: 2196692620677124919, guid: cc3e02a78706cca45b29242c08dc52c2, type: 3}
+  Splat2: {fileID: 8300000, guid: 42c9421ef8d2f2245a6e095f3a25ea19, type: 3}

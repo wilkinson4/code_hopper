@@ -12,6 +12,7 @@ public class Tick : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool TickOn = false;
+    public ParticleSystem part;
 
 
     Vector3 newPosition;
@@ -72,6 +73,7 @@ public class Tick : MonoBehaviour
             notDead = false;
             newPosition = new Vector2(transform.position.x, -30f);
             AudioSource.PlayClipAtPoint(Splat, this.transform.position);
+            Instantiate(part, this.transform.position, this.transform.rotation);
         }
     }
 }

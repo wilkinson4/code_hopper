@@ -80,7 +80,7 @@ public class Fly : MonoBehaviour
             notDead = false;
             newPosition = new Vector2(transform.position.x, -30f);
             AudioSource.PlayClipAtPoint(Splat, this.transform.position);
-            part.GetComponent<ParticleSystem>().Play();
+            Instantiate(part, this.transform.position, this.transform.rotation);
         }
     }
 }

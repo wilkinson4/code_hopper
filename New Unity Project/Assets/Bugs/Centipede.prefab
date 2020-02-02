@@ -98,6 +98,7 @@ MonoBehaviour:
   rangex: 10
   rangey: 4.5
   deadimage: {fileID: 21300000, guid: 89438b77891c96e4b85e66fdf6b6f183, type: 3}
+  part: {fileID: 1331858661248113980, guid: d97c6d32696a5fd468191feccdd5378b, type: 3}
   Splat: {fileID: 8300000, guid: fdaae455f3ce1654f8234ac8ece2c04e, type: 3}
 --- !u!61 &61909665967326306
 BoxCollider2D:
