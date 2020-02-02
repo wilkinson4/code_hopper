@@ -12,7 +12,11 @@ public class Spider : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool SpiderOn = false;
+
+    public ParticleSystem part;
+
     public string name = "Spider";
+
 
 
     Vector3 newPosition;
@@ -66,12 +70,14 @@ public class Spider : MonoBehaviour
     {
         if (!locked && !Hand._inputLocked)
         {
+            XSpawn.killSpiders++;
             XSpawn.currentSpidercount--;
             locked = true;
             this.GetComponent<SpriteRenderer>().sprite = deadimage;
             notDead = false;
             newPosition = new Vector2(transform.position.x, -30f);
             AudioSource.PlayClipAtPoint(Splat, this.transform.position);
+            Instantiate(part, this.transform.position, this.transform.rotation);
         }
     }
 }

@@ -12,6 +12,9 @@ public class Peed : MonoBehaviour
     private bool locked = false;
     public Sprite deadimage;
     public static bool PeedOn = false;
+
+    public ParticleSystem part;
+
     public string name = "Peed";
 
 
@@ -65,12 +68,14 @@ public class Peed : MonoBehaviour
     {
         if (!locked && !Hand._inputLocked)
         {
+            XSpawn.killPeeds++;
             XSpawn.currentPeedcount--;
             locked = true;
             this.GetComponent<SpriteRenderer>().sprite = deadimage;
             notDead = false;
             newPosition = new Vector2(transform.position.x, -30f);
             AudioSource.PlayClipAtPoint(Splat, this.transform.position);
+            Instantiate(part, this.transform.position, this.transform.rotation);
         }
     }
 }

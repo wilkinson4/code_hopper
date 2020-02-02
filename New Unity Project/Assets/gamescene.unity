@@ -527,6 +527,7 @@ MonoBehaviour:
   deadimage: {fileID: 21300000, guid: 93217c6685d003242a7d97ca95235e41, type: 3}
   liveimage: {fileID: 21300000, guid: 1d627a9b04c5b6d4691c5dc70b6aca98, type: 3}
   inputlockingTime: 0.5
+  count: 0
   scoreText: {fileID: 1626940954}
   xspawn: {fileID: 0}
 --- !u!212 &488005505
@@ -755,11 +756,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleport: []
-  Flys: {fileID: 1656143421642403750, guid: e661914c3df53c34ab3e385787769034, type: 3}
+  Flys: {fileID: 5066495475004374104, guid: ed4e3e8496b66964d8b3c5815e7ba9b7, type: 3}
   Ticks: {fileID: 7139499332241804477, guid: a317cd96185d44f4db492f12fb26011a, type: 3}
   Spiders: {fileID: 2639660894900513154, guid: a88b0d0d1a53c034983d1c674ed1251c, type: 3}
   Bees: {fileID: 984059820008583975, guid: 7f82f26c4ebd5f44caf8855996be481f, type: 3}
   Peeds: {fileID: 5864530453313509072, guid: d88fc814abf223846b0717b25b31dde0, type: 3}
+  MothBoss: {fileID: 7064427311608023539, guid: cb5c8136c51e59a48bda0210d8d278a3,
+    type: 3}
   numFlies: 5
   numTicks: 5
   numSpiders: 5

@@ -10,11 +10,21 @@ public class XSpawn : MonoBehaviour
     public GameObject Spiders;
     public GameObject Bees;
     public GameObject Peeds;
-    public int numFlies = 10;
-    public int numTicks = 10;
-    public int numSpiders = 10;
-    public int numPeeds = 10;
-    public int numBees = 10;
+
+    public GameObject MothBoss;
+
+    public int numFlies=5;
+    public int numTicks=5;
+    public int numSpiders=5;
+    public int numPeeds=5;
+    public int numBees=5;
+
+    public static int killFlies = 0;
+    public static int killTicks = 0;
+    public static int killSpiders = 0;
+    public static int killPeeds = 0;
+    public static int killBees = 0;
+
     private float moveSpeedX = 1f;
     private float moveSpeedY = 0.5f;
     private Vector2 defaultXSpawn = new Vector2(0f, 5f);
@@ -30,11 +40,14 @@ public class XSpawn : MonoBehaviour
     public static int currentPeedcount = 0;
     public static int currentBeecount = 0;
     public int iFly, iTick, iSpider, iPeed, iBee;
-    private bool doneFly = false, doneTick = true, doneSpider = true, donePeed = true, doneBee = true;
+    private bool doneFly = true, doneTick = false, doneSpider = false, donePeed = false, doneBee = false;
+  //  GameObject hand = GameObject.Find("Hand");
+ //  public int count = hand.GetComponent<count>;
 
     // Start is called before the first frame update
     void Start()
     {
+    //    hand = new Hand();
         StartCoroutine(SpawnFly());
     }
 
@@ -44,51 +57,55 @@ public class XSpawn : MonoBehaviour
         for (iFly = 0; iFly < numFlies; i++)
             {
                 SpawnPrefebFly();
-                yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(10f);
             }
         defaultXY();
         for (iPeed = 0; iPeed < numPeeds; i++)
             {
                 SpawnPrefebPeed();
-                yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(3f);
             }
         defaultXY();
         for (iTick = 0; iTick < numTicks; i++)
             {
                 SpawnPrefebTick();
-                yield return new WaitForSeconds(4f);
+                yield return new WaitForSeconds(6f);
             }
         for (iSpider = 0; iSpider < numSpiders; i++)
             {
                 SpawnPrefebSpider();
-                yield return new WaitForSeconds(0.8f);
+            yield return new WaitForSeconds(0.8f);
             }
         defaultXY();
         for (iBee = 0; iBee < numBees; i++)
             {
                 SpawnPrefebBees();
-                yield return new WaitForSeconds(0.8f);
-            }
-
-
+                yield return new WaitForSeconds(2f);
+        }
+        while (currentflycount > 0 || currentBeecount > 0 || currentPeedcount > 0 || currentSpidercount > 0 || currentTickcount > 0) { yield return new WaitForSeconds(1f); }
+        //while(hand.count != 0)
+       // {
+          //  yield return new WaitForSeconds(5f);
+       // }
+        SpawnPrefebMothBoss();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-      //  Debug.Log(currentflycount + "Fly " + currentPeedcount + "Peed " + currentTickcount + "Tick " + currentSpidercount + "Spider " + currentBeecount + "Bee");
         //get the Input from Horizontal axis
         float horizontalInput = transform.position.x;
         //get the Input from Vertical axis
         float verticalInput = transform.position.y;
 
         //update the position
-        if (currentflycount < 1 && iFly < numFlies && !doneFly) { Debug.Log("OverrideFly"); SpawnPrefebFly(); }
-        if (currentPeedcount < 1 && iPeed < numPeeds && !donePeed) { Debug.Log("OverridePeed"); SpawnPrefebPeed(); }
-        if (currentTickcount < 1 && iTick < numTicks && !doneTick) { Debug.Log("OverrideTick"); SpawnPrefebTick(); }
-        if (currentSpidercount < 1 && iSpider < numSpiders && !doneSpider ) { Debug.Log("OverrideSpider"); SpawnPrefebSpider(); }
-        if (currentBeecount < 1 && iBee < numBees && !doneBee) { Debug.Log("OverrideBee"); SpawnPrefebBees(); }
+        //.Log("Flies: " + currentflycount + "CFly " + iFly + "iFly " + numFlies + "nFly " + doneFly);
+        if (currentflycount < 1 && iFly < numFlies && doneFly) {  SpawnPrefebFly(); }
+        if (currentflycount < 1 && currentPeedcount < 1 && iPeed < numPeeds && donePeed) {  SpawnPrefebPeed(); }
+        if (currentflycount < 1 && currentPeedcount < 1 && currentTickcount < 1 && iTick < numTicks && doneTick) {  SpawnPrefebTick(); }
+        if (currentflycount < 1 && currentPeedcount < 1 && currentTickcount < 1 && currentSpidercount < 1 && iSpider < numSpiders && doneSpider ) { SpawnPrefebSpider(); }
+        if (currentflycount < 1 && currentPeedcount < 1 && currentTickcount < 1 && currentSpidercount < 1 && currentBeecount < 1 && iBee < numBees && doneBee) {  SpawnPrefebBees(); }
         if (xory)
         {
             if (swap)
@@ -158,7 +175,7 @@ public class XSpawn : MonoBehaviour
         {
             currentflycount++;
             iFly++;
-            if (iFly >= numFlies) { doneFly = true; donePeed = false; }
+            doneFly = true;
             Instantiate(Flys, transform.position, Quaternion.identity);
         }
     }
@@ -170,7 +187,7 @@ public class XSpawn : MonoBehaviour
         {
             currentTickcount++;
             iTick++;
-            if (iTick >= numTicks) { doneTick = false; doneSpider = true; }
+            doneTick = true; donePeed = false;
             Instantiate(Ticks, transform.position, Quaternion.identity);
         }
     }
@@ -181,7 +198,7 @@ public class XSpawn : MonoBehaviour
         {
             currentSpidercount++;
             iSpider++;
-            if (iSpider >= numSpiders) { doneSpider = false; doneBee = true; }
+            doneSpider = true; doneTick = false; 
             Instantiate(Spiders, transform.position, Quaternion.identity);
         }
     }
@@ -192,7 +209,7 @@ public class XSpawn : MonoBehaviour
         {
             currentPeedcount++;
             iPeed++;
-            if (iPeed >= numPeeds ) { donePeed = false; doneTick = true; }
+            donePeed = true; doneFly = false;
             if (transform.position.y > 4)
             {
                 transform.position = new Vector2(10f, 4f);
@@ -209,10 +226,17 @@ public class XSpawn : MonoBehaviour
     {
         if (iBee < numBees)
         {
+            doneBee = true; doneSpider = false;
             currentBeecount++;
             iBee++;
             Instantiate(Bees, transform.position, Quaternion.identity);
         }
 
+    }
+    void SpawnPrefebMothBoss()
+    {
+        doneBee = false;
+            Instantiate(MothBoss, transform.position, Quaternion.identity);
+        
     }
 }

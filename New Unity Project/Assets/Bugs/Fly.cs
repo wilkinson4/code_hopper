@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof(ParticleSystem))]
 public class Fly : MonoBehaviour
 {
     public float speed = 1.5f;
@@ -15,11 +16,22 @@ public class Fly : MonoBehaviour
     Vector3 newPosition;
     public AudioClip Splat;
     AudioSource audioSource;
+
+    public ParticleSystem part;
+
+
+    public Rect windowRect = new Rect(0, 0, 300, 120);
+
+    public bool includeChildren = true;
+
+
+
     public string name = "Fly";
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        
         PositionChange();
     }
 
@@ -64,12 +76,14 @@ public class Fly : MonoBehaviour
     {
         if (!locked && !Hand._inputLocked)
         {
+            XSpawn.killFlies++;
             XSpawn.currentflycount--;
             locked = true;
             this.GetComponent<SpriteRenderer>().sprite = deadimage;
             notDead = false;
             newPosition = new Vector2(transform.position.x, -30f);
             AudioSource.PlayClipAtPoint(Splat, this.transform.position);
+            Instantiate(part, this.transform.position, this.transform.rotation);
         }
     }
 }

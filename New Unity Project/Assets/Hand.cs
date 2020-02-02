@@ -10,10 +10,13 @@ public class Hand : MonoBehaviour
     public Sprite deadimage;
     public Sprite liveimage;
     public static bool _inputLocked;
-    public float inputlockingTime = 0.5f;
-    private int count;
+
+    public float inputlockingTime = 0.2f;
+
+    public int count;
     public Text scoreText;
     public XSpawn xspawn;
+
 
     void Start()
     {
@@ -59,10 +62,11 @@ public class Hand : MonoBehaviour
         {
             if (isInputLocked())
             {
-                Debug.LogWarning("Input locked");
+
             }
             else
             {
+
                 LockInput();
                 this.GetComponent<SpriteRenderer>().sprite = deadimage;
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
