@@ -15,9 +15,12 @@ public class Tick : MonoBehaviour
 
 
     Vector3 newPosition;
+    public AudioClip Splat;
+    AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         PositionChange();
     }
 
@@ -60,13 +63,14 @@ public class Tick : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        if (!locked)
+        if (!locked && !Hand._inputLocked)
         {
             XSpawn.currentTickcount--;
             locked = true;
             this.GetComponent<SpriteRenderer>().sprite = deadimage;
             notDead = false;
             newPosition = new Vector2(transform.position.x, -30f);
+            AudioSource.PlayClipAtPoint(Splat, this.transform.position);
         }
     }
 }
