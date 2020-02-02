@@ -13,12 +13,14 @@ public class Hand : MonoBehaviour
     public float inputlockingTime = 0.5f;
     private int count;
     public Text scoreText;
+    public XSpawn xspawn;
 
     void Start()
     {
+        xspawn = new XSpawn();
         cam = Camera.main;
-        count = 100;
-        scoreText.text = $"Score: {count.ToString()}";
+        count = xspawn.numFlies + xspawn.numBees + xspawn.numPeeds + xspawn.numTicks + xspawn.numSpiders;
+        scoreText.text = $"Bugs Left: {count.ToString()}";
     }
     void OnGUI()
     {
@@ -72,8 +74,7 @@ public class Hand : MonoBehaviour
                     if (hit.collider.gameObject.CompareTag("bug"))
                     {
                         count--;
-                        scoreText.text = $"Score: {count.ToString()}";
-                        Debug.Log($"COUNT-------------------------------->{count}");
+                        scoreText.text = $"Bugs Left: {count.ToString()}";
                     }
                 }
             }

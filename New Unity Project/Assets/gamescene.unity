@@ -528,6 +528,7 @@ MonoBehaviour:
   liveimage: {fileID: 21300000, guid: 1d627a9b04c5b6d4691c5dc70b6aca98, type: 3}
   inputlockingTime: 0.5
   scoreText: {fileID: 1626940954}
+  xspawn: {fileID: 0}
 --- !u!212 &488005505
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1056,7 +1057,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 60, y: -35}
+  m_AnchoredPosition: {x: 0, y: -35}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1626940954
@@ -1090,7 +1091,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score:'
+  m_Text: 'Bugs Left:'
 --- !u!222 &1626940955
 CanvasRenderer:
   m_ObjectHideFlags: 0
