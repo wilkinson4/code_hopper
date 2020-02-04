@@ -13,7 +13,7 @@ public class FinalBossMoth: MonoBehaviour
     public float increase = 0f;
     private bool notDead = true;
     private bool locked = false;
-    public int numhits = 20;
+    public int numhits = 10;
     public Sprite deadimage;
     public static bool TickOn = false;
     public ParticleSystem part;
@@ -31,6 +31,11 @@ public class FinalBossMoth: MonoBehaviour
     void PositionChange()
     {
         newPosition = new Vector2(Random.Range(-rangex, rangex), Random.Range(-rangey, rangey));
+    }
+    IEnumerator waitfordeath ()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     void Update()
@@ -91,7 +96,7 @@ public class FinalBossMoth: MonoBehaviour
                 newPosition = new Vector2(transform.position.x, -30f);
                 AudioSource.PlayClipAtPoint(Splat2, this.transform.position);
                 Instantiate(part2, this.transform.position, this.transform.rotation);
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                StartCoroutine(waitfordeath());
             }
 
         }
